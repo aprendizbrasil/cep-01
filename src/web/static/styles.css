@@ -1,0 +1,166 @@
+/* Estilos gerais para o sistema CEP */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Cabeçalho principal */
+.header {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    border-radius: 0 0 20px 20px;
+    padding: 3rem 1rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.logo-img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border: 5px solid white;
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    margin-bottom: 1.5rem;
+}
+
+/* Cards de menu */
+.card-menu {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    background-color: white;
+}
+
+.card-menu:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.card-menu .card-body {
+    padding: 2rem;
+}
+
+.icon-wrapper {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #6a11cb;
+}
+
+/* Botões */
+.btn-menu {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    border: none;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-menu:hover {
+    background: linear-gradient(135deg, #5a0cb9 0%, #1c68e8 100%);
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-primary-custom {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+}
+
+.btn-primary-custom:hover {
+    background-color: #5a0cb9;
+    border-color: #5a0cb9;
+}
+
+/* Formulários */
+.form-control:focus {
+    border-color: #6a11cb;
+    box-shadow: 0 0 0 0.25rem rgba(106, 17, 203, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+/* Tabelas */
+.table-custom {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.table-custom thead {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+}
+
+.table-custom tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Alertas */
+.alert-custom {
+    border-radius: 10px;
+    border-left: 5px solid #6a11cb;
+}
+
+/* Rodapé */
+.footer {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    background-color: #343a40;
+    color: #adb5bd;
+    border-radius: 20px 20px 0 0;
+}
+
+/* Página de consulta */
+.cep-result-card {
+    border-left: 5px solid #6a11cb;
+    border-radius: 10px;
+}
+
+/* Página de upload */
+.upload-area {
+    border: 3px dashed #6a11cb;
+    border-radius: 15px;
+    padding: 3rem;
+    text-align: center;
+    background-color: #f8f9fa;
+    transition: all 0.3s;
+}
+
+.upload-area:hover {
+    background-color: #e9ecef;
+    border-color: #5a0cb9;
+}
+
+.upload-icon {
+    font-size: 4rem;
+    color: #6a11cb;
+    margin-bottom: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        padding: 2rem 1rem;
+    }
+    
+    .logo-img {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .card-menu .card-body {
+        padding: 1.5rem;
+    }
+    
+    .upload-area {
+        padding: 2rem 1rem;
+    }
+}

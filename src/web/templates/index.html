@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endereços, CEPs e Coordenadas</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header text-center">
+            <img src="https://via.placeholder.com/300x300/6a11cb/ffffff?text=CEP+System" alt="Logo" class="logo-img">
+            <h1 class="display-4 fw-bold">Endereços, CEPs e Coordenadas</h1>
+            <p class="lead">Sistema completo para consulta de CEPs e obtenção de coordenadas geográficas</p>
+        </header>
+
+        <!-- Menu de navegação -->
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-menu">
+                    <div class="card-body text-center">
+                        <div class="icon-wrapper">
+                            <i class="bi bi-house-door"></i>
+                        </div>
+                        <h3 class="card-title">Página Inicial</h3>
+                        <p class="card-text">Você está aqui. Esta é a página principal do sistema.</p>
+                        <a href="/" class="btn btn-menu">Início</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-menu">
+                    <div class="card-body text-center">
+                        <div class="icon-wrapper">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <h3 class="card-title">Consulta de CEP</h3>
+                        <p class="card-text">Consulte um CEP individual e obtenha endereço completo com coordenadas.</p>
+                        <a href="/consulta-cep-v2" class="btn btn-menu">Acessar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-menu">
+                    <div class="card-body text-center">
+                        <div class="icon-wrapper">
+                            <i class="bi bi-file-earmark-spreadsheet"></i>
+                        </div>
+                        <h3 class="card-title">Processar CSV em Massa</h3>
+                        <p class="card-text">Envie um arquivo CSV com CEPs e obtenha latitude e longitude para todos.</p>
+                        <a href="/add-lat-long" class="btn btn-menu">Acessar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Descrição do sistema -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="bi bi-info-circle me-2"></i>Sobre o Sistema</h4>
+                        <p class="card-text">
+                            Este sistema utiliza a API <strong>Brasil Aberto</strong> para obter informações detalhadas de endereços a partir de CEPs.
+                            Você pode consultar um CEP individualmente ou processar uma lista completa em arquivo CSV.
+                            Todas as coordenadas são retornadas no formato brasileiro (vírgula como separador decimal).
+                        </p>
+                        <ul>
+                            <li><strong>Consulta individual:</strong> Ideal para buscas rápidas.</li>
+                            <li><strong>Processamento em massa:</strong> Perfeito para grandes volumes de dados.</li>
+                            <li><strong>Interface moderna:</strong> Design responsivo e intuitivo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer text-center">
+            <p class="mb-0">© 2025 Sistema de Pesquisa de CEP, Coordenadas, Endereços e Distâncias</p>
+            <p class="small">Desenvolvido com Flask e Bootstrap</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

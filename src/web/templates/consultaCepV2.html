@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de CEP Versão 2</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header text-center">
+            <h1 class="display-4 fw-bold">Consulta de CEP Versão 2</h1>
+            <p class="lead">Obtenha informações completas de endereço e coordenadas geográficas</p>
+            <a href="/" class="btn btn-menu mt-3">
+                <i class="bi bi-arrow-left me-2"></i>Voltar à Página Inicial
+            </a>
+        </header>
+
+        <!-- Formulário de consulta -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="bi bi-search me-2"></i>Consultar CEP</h4>
+                        <p class="card-text">Digite um CEP (com ou sem hífen) e clique em "Consultar" para obter as informações.</p>
+                        
+                        <form method="POST" action="/consulta-cep-v2">
+                            <div class="mb-3">
+                                <label for="cep" class="form-label">CEP</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-postcard"></i></span>
+                                    <input type="text" class="form-control" id="cep" name="cep" 
+                                           placeholder="Ex: 27267430 ou 27267-430" 
+                                           value="{{ request.form.cep if request.form.cep else '' }}">
+                                    <button class="btn btn-primary-custom" type="submit">
+                                        <i class="bi bi-search me-2"></i>Consultar
+                                    </button>
+                                </div>
+                                <div class="form-text">Digite 8 dígitos, com ou sem hífen.</div>
+                            </div>
+                        </form>
+
+                        <!-- Mensagens de erro -->
+                        {% if error %}
+                        <div class="alert alert-danger alert-custom mt-3">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <strong>Erro:</strong> {{ error }}
+                        </div>
+                        {% endif %}
+
+                        <!-- Resultado da consulta -->
+                        {% if result %}
+                        <div class="mt-4">
+                            <h5 class="mb-3"><i class="bi bi-check-circle me-2 text-success"></i>Resultado da Consulta</h5>
+                            <div class="card cep-result-card">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-3 text-muted">CEP: {{ result.result.zipcode }}</h6>
+                                    
+                                    <table class="table table-custom">
+                                        <thead>
+                                            <tr>
+                                                <th width="40%">Atributo</th>
+                                                <th>Valor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>Logradouro</strong></td>
+                                                <td>{{ result.result.street }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Complemento</strong></td>
+                                                <td>{{ result.result.complement if result.result.complement else 'Não informado' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Bairro</strong></td>
+                                                <td>{{ result.result.district }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Cidade</strong></td>
+                                                <td>{{ result.result.city }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Estado</strong></td>
+                                                <td>{{ result.result.state }} ({{ result.result.stateShortname }})</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>ID do IBGE</strong></td>
+                                                <td>{{ result.result.ibgeId }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Latitude</strong></td>
+                                                <td>{{ result.result.coordinates.latitude|replace('.', ',') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Longitude</strong></td>
+                                                <td>{{ result.result.coordinates.longitude|replace('.', ',') }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Informações da API -->
+                                    <div class="mt-4">
+                                        <h6><i class="bi bi-info-circle me-2"></i>Informações da API</h6>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <small class="text-muted">Página atual: {{ result.meta.currentPage }}</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <small class="text-muted">Total de itens: {{ result.meta.totalOfItems }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Exemplo de uso -->
+                        <div class="mt-5">
+                            <h5><i class="bi bi-lightbulb me-2"></i>Exemplos de CEPs para teste</h5>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <code>27267430</code>
+                                            <p class="small mt-1">Volta Redonda - RJ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <code>22790100</code>
+                                            <p class="small mt-1">Rio de Janeiro - RJ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <code>20750-000</code>
+                                            <p class="small mt-1">Abolição - RJ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer text-center mt-5">
+            <p class="mb-0">© 2025 Sistema de Pesquisa de CEP, Coordenadas, Endereços e Distâncias</p>
+            <p class="small">Consulta individual via API Brasil Aberto</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Foco automático no campo CEP
+        document.addEventListener('DOMContentLoaded', function() {
+            const cepInput = document.getElementById('cep');
+            if (cepInput) {
+                cepInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>
