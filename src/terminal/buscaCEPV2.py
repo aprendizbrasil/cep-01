@@ -1,8 +1,11 @@
 import sys
 import json
-from api.getCepInfoV2 import get_cep_info
+import os # Importar o módulo os
+# Adiciona o diretório raiz ao path para importar módulos
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+from src.api.getCepInfoV2 import get_cep_info
 
-def main():
+def run_cli_cep_search():
     """
     Entrada principal do sistema: solicita um CEP e exibe a resposta bruta da API.
     """
@@ -33,4 +36,4 @@ def main():
     input()
 
 if __name__ == "__main__":
-    main()
+    run_cli_cep_search()
