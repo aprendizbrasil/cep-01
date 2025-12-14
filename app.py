@@ -12,4 +12,4 @@ if __name__ == '__main__':
     # Em produção, você deve usar um servidor WSGI como Gunicorn ou Waitress
     # e desativar o debug.
     # Por exemplo: waitress-serve --host=0.0.0.0 --port=5000 app:app
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)
